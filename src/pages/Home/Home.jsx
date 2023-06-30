@@ -1,7 +1,12 @@
-import CardNoticia from "../../components/HomeComponents/CardNoticia/CardNoticia"
-import ComponenteFilho from "../../components/HomeComponents/ComponenteFilho/ComponenteFilho"
+import React from 'react'
+
+import { useNavigate } from 'react-router-dom';
+import CardNoticias from "../../components/HomeComponents/CardNoticia/CardNoticia";
+import ComponenteFilho from "../../components/HomeComponents/ComponenteFilho/ComponenteFilho.jsx";
 
 function Home() {
+
+    const navigate = useNavigate()
 
     const temNoticia = true;
 
@@ -20,14 +25,25 @@ function Home() {
         }
     }
 
+    const handleClick = () => {
+        navigate('/empresa/senai')
+    }
+
+    const handleClick2 = () => {
+        navigate('/empresa/audaces')
+    }
+
     return(
-        <>
+        <div>
             <h1>Home</h1>
+
+            <button onClick={handleClick}>Ver Senai</button>
+            <button onClick={handleClick2}>Ver Audaces</button>
 
             {renderizarQtdNoticias()}
 
             {temNoticia ? (
-                <CardNoticia
+                <CardNoticias
                 titulo={tituloNoticia}
                 srcImage={srcImage}/>
             ) : (
@@ -35,17 +51,17 @@ function Home() {
             )}
 
             {/* {temNoticia && 
-            <CardNoticia
+            <CardNoticias
                  titulo={tituloNoticia}
                  srcImage={srcImage}/> */}
         
-            {/* <CardNoticia
+            {/* <CardNoticias
                  titulo={tituloNoticia}
                  srcImage={srcImage}/> */}
 
             <ComponenteFilho callback={handleComponenteFilho}/>
-        </>
-    )
+        </div>
+    ) 
 }
 
 export default Home;

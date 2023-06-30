@@ -1,7 +1,24 @@
-function Formulario () {
+import {useState} from "react"
+
+function Formulario ({handleSubmit}) {
+
+    const [form, setForm] = useState()
+
+    const handleChange =(event) =>{
+        setForm(event.target.value)
+    }
+
+    
+    const criarTarefa =(event) => {
+        event.preventDefault()
+        handleSubmit(form)
+    }
+
+
     return (
-        <form>
-            <input placeholder="Digite uma nova tarefa" type="text" />
+        <form onSubmit={criarTarefa}>
+            <input vaLue={form} onChange={handleChange}
+            placeholder="Digite uma nova tarefa" type="text" />
             <button type="submit">Criar Tarefa</button>
         </form>
     )
